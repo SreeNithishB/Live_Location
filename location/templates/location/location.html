@@ -2,7 +2,16 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Live Location Tracking</title>
+
+    <style>
+      #latitude_id {
+        display: none;
+      }
+      #longitude_id {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     {{ map|safe }}
@@ -16,29 +25,23 @@
     </form>
 
 
-    <p id="demo"></p>
 
     <script>
-    var x = document.getElementById("demo");
-
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
       }
-    }
 
-    function showPosition(position) {
-      x.innerHTML = "Latitude: " + position.coords.latitude +
-      "<br>Longitude: " + position.coords.longitude;
+      function showPosition(position) {
+        document.getElementById('latitude_id').value = position.coords.latitude;
+        document.getElementById('longitude_id').value = position.coords.longitude;
 
-      document.getElementById('latitude_id').value = position.coords.latitude;
-      document.getElementById('longitude_id').value = position.coords.longitude;
+        document.getElementById("lat_lon_form").submit();
 
-      document.getElementById("lat_lon_form").submit();
-
-    }
+      }
     </script>
   </body>
 </html>

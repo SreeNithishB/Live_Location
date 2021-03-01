@@ -9,3 +9,7 @@ class LocationModelForm(forms.ModelForm):
             'latitude': forms.TextInput(attrs={'id': 'latitude_id'}),
             'longitude': forms.TextInput(attrs={'id': 'longitude_id'}),
         }
+        labels = {
+            'latitude': "",
+            'longitude': "",
+        }
